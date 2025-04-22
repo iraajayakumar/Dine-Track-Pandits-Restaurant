@@ -91,6 +91,20 @@
     transition: filter 0.2s ease;
     filter: grayscale(100%) brightness(0) invert(0); /* black */
   }
+
+  .nav-item.active {
+    background-color: #ffffff;
+    color: #1366D9;
+  }
+  
+  .nav-item.active .nav-text {
+    color: #1366D9;
+  }
+  
+  .nav-item.active .nav-icon {
+    filter: invert(29%) sepia(91%) saturate(1676%) hue-rotate(198deg) brightness(95%) contrast(91%);
+  }
+  
   
   /* Hover: Change icon color + text */
   .nav-item:hover .nav-icon {
