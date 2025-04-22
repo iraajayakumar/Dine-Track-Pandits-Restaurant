@@ -15,11 +15,13 @@
   .main-container {
     display: flex;
     height: 100vh;
+    padding: 1rem 1rem 2rem 1 rem;
   }
   
   /* === Sidebar === */
   .sidebar {
     width: 200px;
+    height: 100vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -28,6 +30,7 @@
     padding-top: 0.25rem;
     padding-bottom: 1.25rem;
     box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
   }
   
   /* === Sidebar Header === */
@@ -119,9 +122,11 @@
 /* === Main Content === */
 
 .main-content {
+    margin-left: 200px;
     flex: 1;
     padding: 1rem 1rem 0 1rem;
     position: relative;
+    overflow-y: auto;
   }
 
 /* === Top Navbar === */
@@ -136,7 +141,7 @@
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.10);
     border-radius: 6px;
     top: 0;
-    z-index: 5;
+    z-index: 3;
   }
   
   /* Search Bar */
@@ -187,4 +192,238 @@
   .nav-icon:hover {
     filter: invert(29%) sepia(91%) saturate(1676%) hue-rotate(198deg) brightness(95%) contrast(91%);
   }
+
+/* === Header === */
+
+.header {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    padding-right: 1.5rem;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
+    top: 0;
+    position: relative;
+    z-index: 2;
+    margin-top: 0.5rem;
+    font-family: "Inter", sans-serif;
+  }
+
+.title {
+    align-self: self-start;
+    margin-left: 0.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.5rem;
+    font-weight: 300;
+    color: #383E49;
+}
+
+.overview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.overview-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.overview-item h4 {
+    margin-left: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1570EF;
+}
+
+.overview-subitem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0.25rem;
+    gap: 3rem;
+}
+
+.overview-smallitem {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    gap: 0.25rem;
+    
+}
+
+.overview-smallitem h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+.overview-smallitem p {
+    font-size: 0.6rem;
+    font-weight: 300;
+    color: #000000;
+}
+
+/* === Category Navbar === */
+
+.inventory-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 0.75rem;
+    padding:  1rem 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
   
+  
+  .inventory-nav-item {
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  }
+  
+  .inventory-nav-item:hover {
+    background-color: #e0f0ff;
+    color: #0F50AA;
+    border-color: #0F50AA;
+  }
+  
+  .inventory-nav-item.active {
+    background-color: #0F50AA;
+    color: white;
+    border-color: #0F50AA;
+  }
+
+  /* === Inventory Management === */
+
+  .inventory-management {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    padding-right: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.10);
+    border-radius: 6px;
+    top: 0;
+    position: relative;
+    z-index: 2;
+    font-family: "Inter", sans-serif;
+    height: 100%;
+  }
+
+  .inventory-management-header {
+    display:flex;
+    flex-direction: row;
+    align-self: flex-start;
+    justify-content: space-between;
+    width:100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-self: flex-start;
+    position: sticky;
+    top:0;
+    background-color: #ffffff;
+    z-index: 10;
+
+  }
+
+.inventory-management-header h2 {
+    align-self: flex-start;
+    margin-left: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    color: #383E49;
+}
+
+.inventory-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.add-btn {
+    background-color: #0F50AA;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #5D6679;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.other-btn {
+    justify-content: center;
+    background-color: #ffffff;
+    color: #5D6679;
+    padding: 0.5rem 1rem;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.filter-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+}
+
+.add-btn:hover,
+.filter-btn:hover,
+.other-btn:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px) scale(1.04);
+  transition: all 0.25s ease;
+}
+
+.inventory-management-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    background-color: #ffffff;
+    position: sticky;
+    top: 100%;
+    z-index: 2;
+}

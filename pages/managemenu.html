@@ -7,68 +7,96 @@
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <div class="main-container">
-      <!-- Sidebar -->
-      <aside class = "sidebar">
-        <!-- Sidebar Header -->
-        <div class="sidebar-header">
-          <div class="sidebar-logo">
-            <img src="../assets/pandits_logo_small.png" alt="Logo" class="logo-img" />
+      <div class="main-container">
+        <!-- Sidebar -->
+        <aside class = "sidebar">
+          <!-- Sidebar Header -->
+          <div class="sidebar-header">
+            <div class="sidebar-logo">
+              <img src="../assets/pandits_logo_small.png" alt="Logo" class="logo-img" />
+            </div>
+            <nav class="sidebar-nav">
+              <a href="../pages/dashboard.html" class="nav-item">
+                <img src="../assets/dashboard.png" alt="Dashboard" class="nav-icon" />
+                <span class="nav-text">Dashboard</span>
+              </a>
+              <a href="../pages/inventory.html" class="nav-item">
+                <img src="../assets/inventory.png" alt="Inventory" class="nav-icon" />
+                <span class="nav-text">Inventory</span>
+              </a>
+              <a href="../pages/orders.html" class="nav-item">
+                <img src="../assets/stock_orders.png" alt="Stock Orders" class="nav-icon" />
+                <span class="nav-text">Stock Orders</span>
+              </a>
+              <a href="../pages/suppliers.html" class="nav-item">
+                <img src="../assets/suppliers.png" alt="Suppliers" class="nav-icon" />
+                <span class="nav-text">Suppliers</span>
+              </a>
+              <a href="../pages/managemenu.html" class="nav-item active">
+                <img src="../assets/manage_menu.png" alt="Manage Menu" class="nav-icon" />
+                <span class="nav-text">Manage Menu</span>
+              </a>
+              <a href="../pages/sales.html" class="nav-item">
+                <img src="../assets/sales.png" alt="Sales" class="nav-icon" />
+                <span class="nav-text">Sales</span>
+              </a>
+            </nav>
           </div>
-          <nav class="sidebar-nav">
-            <a href="../pages/dashboard.html" class="nav-item">
-              <img src="../assets/dashboard.png" alt="Dashboard" class="nav-icon" />
-              <span class="nav-text">Dashboard</span>
+
+          <!-- Sidebar Footer -->
+          <div class="sidebar-footer">
+            <a href="#" class="nav-item">
+              <img src="../assets/settings.png" alt="Settings" class="nav-icon" />
+              <span class="nav-text">Settings</span>
             </a>
-            <a href="../pages/inventory.html" class="nav-item">
-              <img src="../assets/inventory.png" alt="Inventory" class="nav-icon" />
-              <span class="nav-text">Inventory</span>
+            <a href="#" class="nav-item">
+              <img src="../assets/logout.png" alt="Logout" class="nav-icon" />
+              <span class="nav-text">Logout</span>
             </a>
-            <a href="../pages/orders.html" class="nav-item">
-              <img src="../assets/stock_orders.png" alt="Stock Orders" class="nav-icon" />
-              <span class="nav-text">Stock Orders</span>
-            </a>
-            <a href="../pages/suppliers.html" class="nav-item">
-              <img src="../assets/suppliers.png" alt="Suppliers" class="nav-icon" />
-              <span class="nav-text">Suppliers</span>
-            </a>
-            <a href="../pages/managemenu.html" class="nav-item active">
-              <img src="../assets/manage_menu.png" alt="Manage Menu" class="nav-icon" />
-              <span class="nav-text">Manage Menu</span>
-            </a>
-            <a href="../pages/sales.html" class="nav-item">
-              <img src="../assets/sales.png" alt="Sales" class="nav-icon" />
-              <span class="nav-text">Sales</span>
-            </a>
-          </nav>
+          </div>
+        </aside>
+      
+        <!-- Main Content -->
+        <main class="main-content">
+          <!-- Top Navigation Bar -->
+          <div class="top-navbar">
+            <div class="search-container">
+              <img src="../assets/search.png" alt="Search" class="icon search-icon" />
+              <input type="search" placeholder="Search product, supplier, order" class="search-input" />
+            </div>
+          <div class="nav-actions">
+            <img src="../assets/notification.png" alt="Notifications" class="icon nav-icon" />
+            <img src="../assets/profile.png" alt="Profile" class="icon nav-icon" />
+          </div>
+        </div>
+        <!-- Inventory NavBar -->
+        <div class="inventory-navbar">
+          <div class="inventory-nav-item active">Chaat Waat</div>
+          <div class="inventory-nav-item">Local Taste</div>
+          <div class="inventory-nav-item">Thanda Garam</div>
+          <div class="inventory-nav-item">Not just Italian</div>
+          <div class="inventory-nav-item">Flavours of China</div>
+          <div class="inventory-nav-item">Not just American</div>
+          <div class="inventory-nav-item">Breads</div>
+          <div class="inventory-nav-item">Soups</div>
+          <div class="inventory-nav-item">South Indian</div>
         </div>
 
-        <!-- Sidebar Footer -->
-        <div class="sidebar-footer">
-          <a href="#" class="nav-item">
-            <img src="../assets/settings.png" alt="Settings" class="nav-icon" />
-            <span class="nav-text">Settings</span>
-          </a>
-          <a href="#" class="nav-item">
-            <img src="../assets/logout.png" alt="Logout" class="nav-icon" />
-            <span class="nav-text">Logout</span>
-          </a>
-        </div>
-      </aside>
-      
-      <!-- Main Content -->
-      <main class="main-content">
-        <!-- Top Navigation Bar -->
-        <div class="top-navbar">
-          <div class="search-container">
-            <img src="../assets/search.png" alt="Search" class="icon search-icon" />
-            <input type="search" placeholder="Search product, supplier, order" class="search-input" />
+        <!-- Inventory Management -->
+        <div class="inventory-management">
+          <div class="inventory-management-header">
+            <h2>Chaat Waat</h2>
+            <div class="inventory-buttons">
+              <button class="add-btn">Add Product</button>
+              <button class="filter-btn"><img src="../assets/filter.png" alt="Filter" class="filter-icon" />Filter</button>
+              <button class="other-btn">Download all</button>
+            </div>
           </div>
-        <div class="nav-actions">
-          <img src="../assets/notification.png" alt="Notifications" class="icon nav-icon" />
-          <img src="../assets/profile.png" alt="Profile" class="icon nav-icon" />
+          <div class="inventory-management-footer">
+              <button class="other-btn">Previous</button>
+              <button class="other-btn">Next</button>
+          </div>
         </div>
-      </div>
       </main>
 
     </div>    
