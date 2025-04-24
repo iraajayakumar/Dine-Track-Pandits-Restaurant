@@ -77,7 +77,7 @@
                 </div>
                 <div class="overview">
                     <div class="overview-item">
-                        <h4>Categories</h4>
+                        <h4 class="first-header">Categories</h4>
                         <div class="overview-subitem">
                             <div class="overview-smallitem">
                                 <h5>20</h5>
@@ -86,7 +86,7 @@
                         </div>                        
                     </div>
                     <div class="overview-item">
-                        <h4>Total Products</h4>
+                        <h4 class="second-header">Total Products</h4>
                         <div class="overview-subitem">
                             <div class="overview-smallitem">
                                 <h5>868</h5>
@@ -99,7 +99,7 @@
                         </div>                       
                     </div>
                     <div class="overview-item">
-                        <h4>Top Selling</h4>
+                        <h4 class="third-header">Top Selling</h4>
                         <div class="overview-subitem">
                             <div class="overview-smallitem">
                                 <h5>5</h5>
@@ -112,7 +112,7 @@
                         </div>                       
                     </div>
                     <div class="overview-item">
-                        <h4>Low Stocks</h4>
+                        <h4 class="fourth-header">Low Stocks</h4>
                         <div class="overview-subitem">
                             <div class="overview-smallitem">
                                 <h5>12</h5>
@@ -146,18 +146,71 @@
                 <div class="inventory-management-header">
                     <h2>Vegetables</h2>
                     <div class="inventory-buttons">
-                        <button class="add-btn">Add Product</button>
+                        <button id="openModalBtn" class="add-btn">Add Item</button>
                         <button class="filter-btn"><img src="../assets/filter.png" alt="Filter" class="filter-icon" />Filter</button>
                         <button class="other-btn">Download all</button>
                     </div>
                 </div>
                 <div class="inventory-management-footer">
-                    <button class="other-btn">Previous</button>
-                    <button class="other-btn">Next</button>
+                    <button class="add-btn">Previous</button>
+                    <button class="add-btn">Next</button>
                 </div>
             </div>
-        </main>
 
-    </div>    
+            <!-- Add Button Model Popup -->
+            <div id="modalOverlay" class="modal-overlay">
+                <div class="modal">
+                  <span class="close-btn" id="closeModalBtn">&times;</span>
+                  <h2>New Item</h2>
+                  <h4>Upload Item Image</h4>
+                  <form>
+                    <!-- Image Upload Box -->
+                    <div class="image-upload">
+                      <label for="productImage" class="image-box">
+                        <span>Drag image or <strong>Upload</strong></span>
+                        <input type="file" id="productImage" name="productImage" accept="image/*">
+                      </label>
+                    </div>
+
+                    <div class="add-product-input">
+                        <label for="itemName">Item Name:</label>
+                        <input type="text" id="itemName" name="itemName" required>
+                    </div>
+                    
+                    <div class="add-product-input">
+                        <label for="quantity">Current Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" required>
+                    </div>
+
+                    <div class="add-product-input">
+                        <label for="price">Price per Unit:</label>
+                        <input type="number" id="price" name="price" required>
+                    </div>
+
+                    <div class="add-product-input">
+                        <label for="unit">Unit:</label>
+                        <input type="text" id="unit" name="unit" required>
+                    </div>   
+                    
+                    <div class="add-product-input">
+                        <label for="reorderLevel">Reorder Level:</label>
+                        <input type="number" id="reorderLevel" name="reorderLevel" required>
+                    </div>
+
+                    <div class="add-product-input">
+                        <label for="expiryDate">Expiry Date:</label>
+                        <input type="date" id="expiryDate" name="expiryDate" required>
+                    </div>
+                  </form>
+                    <!-- Buttons -->
+                    <div class="modal-buttons">
+                        <button type="button" class="other-btn">Discard</button>
+                        <button type="submit" class="add-btn">Add Product</button>
+                    </div>
+                </div>
+            </div>              
+        </main>
+    </div>
+    <script src="../js/script.js"></script>    
 </body>
 </html>

@@ -76,7 +76,7 @@
         </div>
         <div class="overview">
             <div class="overview-item">
-                <h4>Total Orders</h4>
+                <h4 class="first-header">Total Orders</h4>
                 <div class="overview-subitem">
                     <div class="overview-smallitem">
                         <h5>37</h5>
@@ -85,7 +85,7 @@
                 </div>                        
             </div>
             <div class="overview-item">
-                <h4>Total Received</h4>
+                <h4 class="second-header">Total Received</h4>
                 <div class="overview-subitem">
                     <div class="overview-smallitem">
                         <h5>32</h5>
@@ -98,7 +98,7 @@
                 </div>                       
             </div>
             <div class="overview-item">
-                <h4>Total Returned</h4>
+                <h4 class="third-header">Total Returned</h4>
                 <div class="overview-subitem">
                     <div class="overview-smallitem">
                         <h5>5</h5>
@@ -111,7 +111,7 @@
                 </div>                       
             </div>
             <div class="overview-item">
-                <h4>On the Way</h4>
+                <h4 class="fourth-header">On the Way</h4>
                 <div class="overview-subitem">
                     <div class="overview-smallitem">
                         <h5>12</h5>
@@ -132,18 +132,59 @@
         <div class="inventory-management-header">
             <h2>Sales</h2>
             <div class="inventory-buttons">
-                <button class="add-btn">Add sale</button>
+                <button id="openModalBtn" class="add-btn">Add sale</button>
                 <button class="filter-btn"><img src="../assets/filter.png" alt="Filter" class="filter-icon" />Filter</button>
                 <button class="other-btn">Download all</button>
             </div>
         </div>
         <div class="inventory-management-footer">
-            <button class="other-btn">Previous</button>
-            <button class="other-btn">Next</button>
+            <button class="add-btn">Previous</button>
+            <button class="add-btn">Next</button>
         </div>
     </div>
+
+    <!-- Add Button Model Popup -->
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <h2>New Sale</h2>
+        <h4>Upload Bill Image</h4>
+        <form>
+          <!-- Image Upload Box -->
+          <div class="image-upload">
+            <label for="productImage" class="image-box">
+              <span>Drag image or <strong>Upload</strong></span>
+              <input type="file" id="productImage" name="productImage" accept="image/*">
+            </label>
+          </div>
+
+          <div class="add-product-input">
+              <label for="menuID">Menu ID:</label>
+              <input type="nnumber" id="menuID" name="menuID" required>
+          </div>
+          
+          <div class="add-product-input">
+              <label for="quantity">Current Quantity:</label>
+              <input type="number" id="quantity" name="quantity" required>
+          </div>
+
+          <div class="add-product-input">
+              <label for="price">Total Price:</label>
+              <input type="number" id="price" name="price" required>
+          </div>
+
+        </form>
+          <!-- Buttons -->
+          <div class="modal-buttons">
+              <button type="button" class="other-btn">Discard</button>
+              <button type="submit" class="add-btn">Add Product</button>
+          </div>
+        </div>
+      </div>
+
       </main>
 
-    </div>    
+    </div>
+    <script src="../js/script.js"></script>   
 </body>
 </html>

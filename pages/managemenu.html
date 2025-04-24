@@ -87,18 +87,58 @@
           <div class="inventory-management-header">
             <h2>Chaat Waat</h2>
             <div class="inventory-buttons">
-              <button class="add-btn">Add Product</button>
+              <button id="openModalBtn" class="add-btn">Add Menu Item</button>
               <button class="filter-btn"><img src="../assets/filter.png" alt="Filter" class="filter-icon" />Filter</button>
               <button class="other-btn">Download all</button>
             </div>
           </div>
           <div class="inventory-management-footer">
-              <button class="other-btn">Previous</button>
-              <button class="other-btn">Next</button>
+              <button class="add-btn">Previous</button>
+              <button class="add-btn">Next</button>
           </div>
         </div>
+
+      <!-- Add Button Model Popup -->
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <h2>New Menu Item</h2>
+        <h4>Upload Menu Item Image</h4>
+        <form>
+          <!-- Image Upload Box -->
+          <div class="image-upload">
+            <label for="productImage" class="image-box">
+              <span>Drag image or <strong>Upload</strong></span>
+              <input type="file" id="productImage" name="productImage" accept="image/*">
+            </label>
+          </div>
+
+          <div class="add-product-input">
+              <label for="menuItemName">Menu Item Name:</label>
+              <input type="text" id="menuItemName" name="menuItemName" required>
+          </div>
+          
+          <div class="add-product-input">
+              <label for="price">Price:</label>
+              <input type="number" id="price" name="price" required>
+          </div>
+
+          <div class="add-product-input">
+              <label for="menuCategoryID">Menu Category ID:</label>
+              <input type="number" id="menuCategoryID" name="menuCategoryID" required>
+          </div>
+        </form>
+          <!-- Buttons -->
+          <div class="modal-buttons">
+              <button type="button" class="other-btn">Discard</button>
+              <button type="submit" class="add-btn">Add Product</button>
+          </div>
+        </div>
+      </div>
+      
       </main>
 
-    </div>    
+    </div>
+    <script src="../js/script.js"></script>   
 </body>
 </html>
