@@ -404,6 +404,30 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
+.prev-btn {
+  background-color: #0F50AA;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.next-btn {
+  background-color: #0F50AA;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
 .filter-btn {
     display: flex;
     align-items: center;
@@ -561,5 +585,24 @@
     gap: 1rem;
   }
 
+  /* Table Styles */
+
+  .inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .inventory-table th, #inventory-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .inventory-table thead {
+    background-color: #f4f4f4;
+  }
+  
+
+  
   
   

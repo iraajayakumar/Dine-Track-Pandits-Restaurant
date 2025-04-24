@@ -151,9 +151,24 @@
                         <button class="other-btn">Download all</button>
                     </div>
                 </div>
-                <div class="inventory-management-footer">
-                    <button class="add-btn">Previous</button>
-                    <button class="add-btn">Next</button>
+                <div class="inventory-table" id="table-container">
+                    <table id="inventory-table">
+                      <thead>
+                        <tr>
+                          <th>Item Name</th>
+                          <th>Current Quantity</th>
+                          <th>Price per Unit</th>
+                          <th>Unit</th>
+                          <th>Reorder Level</th>
+                        <th>Expiry Date</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
+                  </div>
+                <div id="pagination-controls" class="inventory-management-footer">
+                    <button id="prevBtn" class="prev-btn">Previous</button>
+                    <button id="nextBtn" class="next-btn">Next</button>
                 </div>
             </div>
 
