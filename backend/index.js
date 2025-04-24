@@ -9,8 +9,8 @@ app.use(cors());                      // Enable CORS
 app.use(express.json());              // Parse JSON data from the body of requests
 
 // Import product routes (we will create these later)
-const productRoutes = require('./routes/products');
-app.use('/api/products', productRoutes);  // Set up a route to handle requests for products
+const productRoutes = require('./routes/inventory');
+app.use('/api/inventory', productRoutes);  // Set up a route to handle requests for products
 
 // Start the server
 app.listen(PORT, () => {
