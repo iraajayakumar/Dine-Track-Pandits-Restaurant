@@ -3,7 +3,9 @@ const router = express.Router();
 const pool = require('../db');
 
 // GET paginated product data
+
 router.get('/', async (req, res) => {
+  console.log("✅ /api/inventory route hit");
   try {
     // Pagination params from frontend: page=1, limit=10
     const page = parseInt(req.query.page) || 1;
@@ -12,7 +14,7 @@ router.get('/', async (req, res) => {
 
     // Only fetch selected columns
     const query = `
-      SELECT i.name, c.name, i.stock_quantity, i.price_per_unit, i.unit, i.reorder_level, i.expiry_date from inventory i, inventory_category c
+      SELECT i.name AS item_name, c.name AS category, i.stock_quantity, i.price_per_unit, i.unit, i.reorder_level, i.expiry_date from veg_inventory i, inventory_category c
         WHERE i.category_id = c.category_id
         LIMIT $1 OFFSET $2;
     `;
@@ -20,9 +22,10 @@ router.get('/', async (req, res) => {
     const result = await pool.query(query, [limit, offset]);
     res.json(result.rows); // array of rows
   } catch (err) {
-    console.error(err.message);
+    console.error("db error:",err);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
 
 module.exports = router;
