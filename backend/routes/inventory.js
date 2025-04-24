@@ -14,8 +14,7 @@ router.get('/', async (req, res) => {
 
     // Only fetch selected columns
     const query = `
-      SELECT i.name AS item_name, c.name AS category, i.stock_quantity, i.price_per_unit, i.unit, i.reorder_level, i.expiry_date from veg_inventory i, inventory_category c
-        WHERE i.category_id = c.category_id
+      SELECT name, stock_quantity, price_per_unit, unit, reorder_level, expiry_date from veg_inventory
         LIMIT $1 OFFSET $2;
     `;
 
