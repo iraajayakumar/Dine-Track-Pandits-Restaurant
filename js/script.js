@@ -18,7 +18,7 @@ window.addEventListener("click", (e) => {
 });
 
 // Data Display and Pagination Controls
-
+let currentCategory = "Vegetables"; // default category
 let page = 1;
 const limit = 10; // Adjust as per your backend
 const tableBody = document.querySelector('#inventory-table tbody');
@@ -26,17 +26,17 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
 function fetchInventory() {
-  fetch(`http://localhost:5000/api/inventory?page=${page}&limit=${limit}`)
-
+  fetch(`http://localhost:5000/api/inventory?page=${page}&limit=${limit}&category=${encodeURIComponent(currentCategory)}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data); // Debug the data here
-      renderTable(data); // Pass the data directly to renderTable
-      prevBtn.disabled = offset === 0;
+      console.log(data);
+      renderTable(data);
+      prevBtn.disabled = page === 1;
       nextBtn.disabled = data.length < limit;
     })
     .catch(error => console.error('Error:', error));
 }
+
 
 
 function renderTable(items) {
@@ -50,7 +50,7 @@ function renderTable(items) {
   items.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
-      <td>${item.item_name || 'N/A'}</td>
+      <td>${item.name || 'N/A'}</td>
       <td>${item.stock_quantity || '0'}</td>
       <td>${item.price_per_unit || '0.00'}</td>
       <td>${item.unit || 'N/A'}</td>
@@ -61,8 +61,30 @@ function renderTable(items) {
   });
 }
 
+const navItems = document.querySelectorAll('.inventory-nav-item');
+const tableHeader = document.getElementById('category-heading');
 
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const selectedCategory = item.textContent.trim();
 
+    if (selectedCategory === currentCategory) return; // Do nothing if same
+
+    // Update active class
+    navItems.forEach(nav => nav.classList.remove('active'));
+    item.classList.add('active');
+
+    // Set category and reset page
+    currentCategory = selectedCategory;
+    page = 1;
+
+    // Update table heading
+    tableHeader.textContent = selectedCategory;
+
+    // Fetch new data
+    fetchInventory();
+  });
+});
 
 prevBtn.addEventListener('click', () => {
   if (page > 1) {
