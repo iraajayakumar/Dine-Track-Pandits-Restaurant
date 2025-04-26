@@ -11,8 +11,10 @@ app.use(express.json());              // Parse JSON data from the body of reques
 // Import routes
 const productRoutes = require('./routes/inventory');
 const manageMenuRoutes = require('./routes/managemenu');
+const ordersRoutes = require('./routes/orders');
 app.use('/api/inventory', productRoutes);
 app.use('/api/managemenu', manageMenuRoutes);
+app.use('/api/orders', ordersRoutes);
 
 app.get('/', (req, res) => {
   res.send('🏠 Hello from backend root');
