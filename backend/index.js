@@ -13,10 +13,12 @@ const productRoutes = require('./routes/inventory');
 const manageMenuRoutes = require('./routes/managemenu');
 const ordersRoutes = require('./routes/orders');
 const suppliersRoutes = require('./routes/suppliers');
+const salesRoutes = require('./routes/sales');
 app.use('/api/inventory', productRoutes);
 app.use('/api/managemenu', manageMenuRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/suppliers', suppliersRoutes);
+app.use('/api/sales', salesRoutes);
 
 app.get('/', (req, res) => {
   res.send('🏠 Hello from backend root');
