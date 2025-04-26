@@ -8,12 +8,11 @@ const PORT = 5000;                    // Port for local development
 app.use(cors());                      // Enable CORS
 app.use(express.json());              // Parse JSON data from the body of requests
 
-// Import product routes (we will create these later)
-/*console.log("Before route");*/
+// Import routes
 const productRoutes = require('./routes/inventory');
-/*console.log("Inventory route loaded");*/
-app.use('/api/inventory', productRoutes);  // Set up a route to handle requests for products
-/*console.log("Inventory route hooked");*/
+const manageMenuRoutes = require('./routes/managemenu');
+app.use('/api/inventory', productRoutes);
+app.use('/api/managemenu', manageMenuRoutes);
 
 app.get('/', (req, res) => {
   res.send('🏠 Hello from backend root');
