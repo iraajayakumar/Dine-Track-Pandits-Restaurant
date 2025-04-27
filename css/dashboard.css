@@ -477,8 +477,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
-    margin-top: 0.5rem;
+    padding-bottom: 1.5rem;
     background-color: #ffffff;
     position: sticky;
     top: 100%;

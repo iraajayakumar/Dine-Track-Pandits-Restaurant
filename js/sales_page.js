@@ -56,27 +56,44 @@ discardBtn.addEventListener("click", () => {
 
 
 // Data Display
-const tableBody = document.querySelector('#inventory-table tbody');
+// --- Variables for pagination ---
+let salesData = []; // All fetched data
+let currentPage = 1;
+const rowsPerPage = 10; // ⬅️ 10 rows per page
 
+// DOM elements
+const tableBody = document.querySelector('#inventory-table tbody');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// --- Fetch orders ---
 async function fetchOrders() {
   try {
-    const response = await fetch(`http://localhost:5000/api/sales`); 
+    const response = await fetch(`http://localhost:5000/api/sales`); // <-- Updated endpoint
     const data = await response.json();
     console.log("Fetched data:", data);
-    renderTable(data);
+    salesData = data; // Save all data globally
+    renderTable(); // ⬅️ Call without passing data
+    updatePaginationButtons();
   } catch (error) {
     console.error('Error fetching orders:', error);
   }
 }
 
-function renderTable(items) {
-  if (!items || items.length === 0) {
-    tableBody.innerHTML = "<tr><td colspan='6'>No data available</td></tr>"; 
+// --- Render table based on page ---
+function renderTable() {
+  tableBody.innerHTML = ''; // Clear old rows
+
+  if (!salesData || salesData.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='7'>No data available</td></tr>";
     return;
   }
 
-  tableBody.innerHTML = ''; 
-  items.forEach(item => {
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const pageItems = salesData.slice(startIndex, endIndex); // ⬅️ Only rows for current page
+
+  pageItems.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${item.sale_id}</td>
@@ -89,5 +106,28 @@ function renderTable(items) {
   });
 }
 
-// Initial fetch
+// --- Update Prev/Next button states ---
+function updatePaginationButtons() {
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage >= Math.ceil(salesData.length / rowsPerPage);
+}
+
+// --- Pagination controls ---
+prevBtn.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderTable();
+    updatePaginationButtons();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentPage < Math.ceil(salesData.length / rowsPerPage)) {
+    currentPage++;
+    renderTable();
+    updatePaginationButtons();
+  }
+});
+
+// --- Initial fetch ---
 fetchOrders();

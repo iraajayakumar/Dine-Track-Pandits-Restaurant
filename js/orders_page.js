@@ -56,27 +56,44 @@ discardBtn.addEventListener("click", () => {
 });
 
 // Data Display
-const tableBody = document.querySelector('#inventory-table tbody');
+// --- Variables for pagination ---
+let ordersData = []; // All fetched data
+let currentPage = 1;
+const rowsPerPage = 10; // ⬅️ 10 rows per page
 
+// DOM elements
+const tableBody = document.querySelector('#inventory-table tbody');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// --- Fetch orders ---
 async function fetchOrders() {
   try {
-    const response = await fetch(`http://localhost:5000/api/orders`); // No category anymore
+    const response = await fetch(`http://localhost:5000/api/orders`);
     const data = await response.json();
     console.log("Fetched data:", data);
-    renderTable(data);
+    ordersData = data; // Save all data globally
+    renderTable(); // ⬅️ Call without passing data
+    updatePaginationButtons();
   } catch (error) {
     console.error('Error fetching orders:', error);
   }
 }
 
-function renderTable(items) {
-  if (!items || items.length === 0) {
-    tableBody.innerHTML = "<tr><td colspan='6'>No data available</td></tr>"; // Adjust colspan based on your table structure
+// --- Render table based on page ---
+function renderTable() {
+  tableBody.innerHTML = ''; // Clear old rows
+
+  if (!ordersData || ordersData.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='7'>No data available</td></tr>";
     return;
   }
 
-  tableBody.innerHTML = ''; // Clear old rows
-  items.forEach(item => {
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const pageItems = ordersData.slice(startIndex, endIndex); // ⬅️ Only rows for current page
+
+  pageItems.forEach(item => {
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${item.order_id}</td>
@@ -91,5 +108,29 @@ function renderTable(items) {
   });
 }
 
-// Initial fetch
+// --- Update Prev/Next button states ---
+function updatePaginationButtons() {
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = currentPage >= Math.ceil(ordersData.length / rowsPerPage);
+}
+
+// --- Pagination controls ---
+prevBtn.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderTable();
+    updatePaginationButtons();
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentPage < Math.ceil(ordersData.length / rowsPerPage)) {
+    currentPage++;
+    renderTable();
+    updatePaginationButtons();
+  }
+});
+
+// --- Initial fetch ---
 fetchOrders();
+
