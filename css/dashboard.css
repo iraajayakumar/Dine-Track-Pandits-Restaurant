@@ -501,11 +501,28 @@
   }
   
   /* Modal Box */
-  .modal {
+  .modal-sales {
     background-color: #fff;
     width: 23%;
     max-width: 90%;
-    height: 80%;
+    height: 60%;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    font-family: "Inter", sans-serif;
+    color: #383E49;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+
+  .modal-orders {
+    background-color: #fff;
+    width: 23%;
+    max-width: 90%;
+    height: 65%;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);

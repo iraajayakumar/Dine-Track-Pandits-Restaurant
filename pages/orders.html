@@ -157,11 +157,11 @@
 
     <!-- Add Button Model Popup -->
     <div id="modalOverlay" class="modal-overlay">
-      <div class="modal">
+      <div class="modal-orders">
         <span class="close-btn" id="closeModalBtn">&times;</span>
         <h2>New Order</h2>
         <h4>Upload Bill Image</h4>
-        <form>
+        <form id="newOrderForm">
           <!-- Image Upload Box -->
           <div class="image-upload">
             <label for="productImage" class="image-box">
@@ -172,7 +172,7 @@
 
           <div class="add-product-input">
               <label for="supplierID">Supplier ID:</label>
-              <input type="text" id="supplierID" name="spplierID" required>
+              <input type="text" id="supplierID" name="supplierID" required>
           </div>
           
           <div class="add-product-input">
@@ -193,14 +193,14 @@
           <div class="add-product-input">
               <label for="unit">Unit:</label>
               <input type="text" id="unit" name="unit" required>
-          </div>   
-        
-        </form>
+          </div>
           <!-- Buttons -->
           <div class="modal-buttons">
-              <button type="button" class="other-btn">Discard</button>
-              <button type="submit" class="add-btn">Add Product</button>
+            <button type="button" id="discardBtn" class="other-btn">Discard</button>
+            <button type="submit" class="add-btn">Add Product</button>
           </div>
+        </form>
+          
         </div>
       </div>    
     </main>
