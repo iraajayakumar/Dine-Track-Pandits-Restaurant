@@ -1,7 +1,10 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const pool = require('../db');
+const upload = multer();
 
+// GET: Fetch sales
 router.get('/', async (req, res) => {
   console.log("✅ /api/orders route hit");
 
@@ -53,6 +56,30 @@ LEFT JOIN miscellaneous_inventory mi
   } catch (err) {
     console.error("❌ DB Error:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// POST: Insert a new sale
+router.post('/', upload.none(), async (req, res) => { // 🛠️ Add upload.none()
+  console.log("✅ POST /api/orders route hit");
+
+  const { supplierID, categoryID, inventoryID, quantity, unit } = req.body;
+  console.log("Received data:", req.body);
+
+  try {
+    const query = `
+      INSERT INTO stock_orders (supplier_ID, category_ID, inventory_ID, quantity, unit, timestamp) 
+      VALUES ($1,$2,$3,$4,$5, NOW())
+      RETURNING *;
+    `;
+    const values = [supplierID, categoryID, inventoryID, quantity, unit];
+
+    const result = await pool.query(query, values);
+
+    res.status(201).json({ message: "Order added successfully", order: result.rows[0] });
+  } catch (err) {
+    console.error("❌ DB Insert Error:", err);
+    res.status(500).json({ error: "Failed to add order" });
   }
 });
 
