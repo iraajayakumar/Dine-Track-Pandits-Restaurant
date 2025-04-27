@@ -24,8 +24,8 @@ fetch('http://localhost:5000/api/sales') // replace with your actual route
         datasets: [{
           label: 'Total Quantity Sold',
           data: values,
-          backgroundColor: 'rgba(67, 119, 203, 0.6)',
-          borderColor: 'rgb(75, 81, 192)',
+          backgroundColor: 'rgba(30, 64, 140, 0.6)',  // A more opaque blue shade
+          borderColor: 'rgba(30, 64, 140, 1)',  // Matching border color
           borderWidth: 1
         }]
       },
@@ -70,13 +70,13 @@ fetch('http://localhost:5000/api/orders') // replace with your actual route
           label: 'Inventory Ordered (kg)',
           data: values,
           backgroundColor: [
-            'rgba(7, 4, 61, 0.6)',
-            'rgba(16, 9, 153, 0.6)',
-            'rgba(68, 60, 221, 0.6)',
-            'rgba(116, 109, 255, 0.6)',
-            'rgba(163, 159, 245, 0.7)'
+            'rgba(34, 87, 153, 0.6)',  // Blueish shades with opacity
+            'rgba(55, 99, 163, 0.6)',  
+            'rgba(72, 121, 185, 0.6)',
+            'rgba(100, 149, 225, 0.6)',
+            'rgba(119, 172, 238, 0.6)'
           ],
-          borderColor: 'rgba(255, 255, 255, 1)',
+          borderColor: 'rgba(255, 255, 255, 1)', // White border for clarity
           borderWidth: 1
         }]
       },
@@ -86,3 +86,83 @@ fetch('http://localhost:5000/api/orders') // replace with your actual route
     });
   })
   .catch(error => console.error('Error fetching orders data:', error));
+
+// Fetch menu data
+fetch('http://localhost:5000/api/managemenu') // replace with your actual route
+  .then(response => response.json())
+  .then(data => {
+    // 1. Group items by category and count the number of items
+    const categoryCounts = {};
+
+    data.forEach(item => {
+      if (categoryCounts[item.category_name]) {
+        categoryCounts[item.category_name] += 1;
+      } else {
+        categoryCounts[item.category_name] = 1;
+      }
+    });
+
+    const categoryLabels = Object.keys(categoryCounts);
+    const categoryItemCounts = Object.values(categoryCounts);
+
+    const ctxItemsPerCategory = document.getElementById('itemsPerCategoryChart').getContext('2d');
+    new Chart(ctxItemsPerCategory, {
+      type: 'bar',
+      data: {
+        labels: categoryLabels,
+        datasets: [{
+          label: 'Number of Items',
+          data: categoryItemCounts,
+          backgroundColor: 'rgba(30, 64, 140, 0.6)',  // Same blue theme as the bar chart
+          borderColor: 'rgba(30, 64, 140, 1)',  // Matching border color
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // 2. Group items by category and calculate total price per category
+    const categoryPriceSums = {};
+
+    data.forEach(item => {
+      const price = parseFloat(item.price);
+      if (categoryPriceSums[item.category_name]) {
+        categoryPriceSums[item.category_name] += price;
+      } else {
+        categoryPriceSums[item.category_name] = price;
+      }
+    });
+
+    const categoryPriceLabels = Object.keys(categoryPriceSums);
+    const categoryPriceTotals = Object.values(categoryPriceSums);
+
+    const ctxPricePerCategory = document.getElementById('pricePerCategoryChart').getContext('2d');
+    new Chart(ctxPricePerCategory, {
+      type: 'pie',
+      data: {
+        labels: categoryPriceLabels,
+        datasets: [{
+          label: 'Total Price',
+          data: categoryPriceTotals,
+          backgroundColor: [
+            'rgba(34, 87, 153, 0.6)',  // Blueish shades with opacity
+            'rgba(55, 99, 163, 0.6)',  
+            'rgba(72, 121, 185, 0.6)',
+            'rgba(100, 149, 225, 0.6)',
+            'rgba(119, 172, 238, 0.6)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  })
+  .catch(error => console.error('Error fetching menu data:', error));
